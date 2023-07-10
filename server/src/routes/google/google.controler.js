@@ -1,6 +1,5 @@
 const { passport } = require("../../middleware/passport");
 
-/*
 function httpCallbackURL(req, res, next) {
   passport.authenticate("google", {
     failureRedirect: "/failure",
@@ -8,13 +7,13 @@ function httpCallbackURL(req, res, next) {
     session: true,
   })(req, res, next);
 }
-*/
+
 function httpLogin(req, res, next) {
   passport.authenticate("google", {
     scope: ["email", "profile"],
   })(req, res, next);
 }
-
+/*
 function httpCallbackURL(req, res, next) {
   passport.authenticate("google", { session: false }, (err, token) => {
     if (err) {
@@ -22,7 +21,7 @@ function httpCallbackURL(req, res, next) {
     }
     return res.status(201).json({ token });
   })(req, res, next);
-}
+}*/
 
 function httplogOut(req, res) {
   req.logout(); //Removes req.user and clears any logged in session

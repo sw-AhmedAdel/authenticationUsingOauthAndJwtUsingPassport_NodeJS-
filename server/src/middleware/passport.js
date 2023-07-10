@@ -52,11 +52,8 @@ async function verifyCallbackAauth(accessToken, refreshToken, profile, done) {
         singUsingGoogle: true,
       };
       user = await CreateUser(user);
-      token = user.generateAuthToken();
-    } else {
-      token = user.generateAuthToken();
     }
-    return done(null, token);
+    return done(null, profile);
   } catch (err) {
     done(err);
   }
@@ -64,14 +61,14 @@ async function verifyCallbackAauth(accessToken, refreshToken, profile, done) {
 
 passport.use(new Strategy(AUTH_OPTIONS, verifyCallbackAauth));
 // Save the session to the cookie
-/*
+
 passport.serializeUser((user, done) => {
   done(null, user.emails[0].value);
 });
 
 passport.deserializeUser((email, done) => {
   done(null, email);
-});*/
+});
 
 module.exports = {
   passport,
